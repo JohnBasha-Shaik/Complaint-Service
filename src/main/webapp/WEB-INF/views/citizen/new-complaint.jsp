@@ -9,7 +9,7 @@
                 <small class="text-muted">Report municipal issues and track their resolution</small>
             </div>
             <div class="card-body">
-                <form action="/complaints/submit" method="post" enctype="multipart/form-data" id="complaintForm">
+                <form action="/complaints/submit" method="post" id="complaintForm">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     
                     <!-- Category Selection -->
@@ -45,15 +45,7 @@
                         <div class="form-text">Help us locate the problem by providing an address or landmark</div>
                     </div>
                     
-                    <!-- File Attachment -->
-                    <div class="mb-3">
-                        <label for="attachment" class="form-label">Attachment (Optional)</label>
-                        <input class="form-control" type="file" id="attachment" name="attachment" 
-                               accept="image/*,.pdf,.doc,.docx">
-                        <div class="form-text">
-                            Upload photos or documents related to your complaint (Max: 10MB, Formats: Images, PDF, DOC)
-                        </div>
-                    </div>
+
                     
                     <!-- Priority Indicator -->
                     <div class="mb-3">
@@ -104,11 +96,11 @@
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <h6>Attach Evidence</h6>
+                        <h6>Additional Details</h6>
                         <ul class="small">
-                            <li>Photos showing the problem</li>
-                            <li>Relevant documents</li>
-                            <li>Before/after images if applicable</li>
+                            <li>Mention any previous reports</li>
+                            <li>Include contact information if needed</li>
+                            <li>Describe urgency level appropriately</li>
                         </ul>
                     </div>
                 </div>
@@ -136,7 +128,6 @@ document.getElementById('description').addEventListener('input', function() {
 document.getElementById('complaintForm').addEventListener('submit', function(e) {
     const description = document.getElementById('description').value.trim();
     const category = document.getElementById('category').value;
-    const fileInput = document.getElementById('attachment');
     
     // Validate description length
     if (description.length < 10) {
@@ -152,17 +143,7 @@ document.getElementById('complaintForm').addEventListener('submit', function(e) 
         return;
     }
     
-    // Validate file size
-    if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        const maxSize = 10 * 1024 * 1024; // 10MB
-        
-        if (file.size > maxSize) {
-            e.preventDefault();
-            alert('File size must be less than 10MB. Please choose a smaller file.');
-            return;
-        }
-    }
+
     
     // Show loading state
     const submitBtn = document.getElementById('submitBtn');

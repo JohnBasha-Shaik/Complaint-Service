@@ -13,9 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -33,15 +31,14 @@ public class ComplaintService {
     @Autowired
     private DepartmentRepository departmentRepository;
     
-    @Autowired
-    private FileStorageService fileStorageService;
+
     
     @Autowired
     private CommentRepository commentRepository;
     
     // Create new complaint
     public Complaint createComplaint(Complaint.Category category, String description, 
-                                   String locationAddress, Long citizenId, MultipartFile attachment) {
+                                   String locationAddress, Long citizenId) {
         User citizen = userRepository.findById(citizenId)
                 .orElseThrow(() -> new RuntimeException("Citizen not found"));
         
@@ -51,16 +48,6 @@ public class ComplaintService {
         
         Complaint complaint = new Complaint(category, description, citizen);
         complaint.setLocationAddress(locationAddress);
-        
-        // Handle file attachment
-        if (attachment != null && !attachment.isEmpty()) {
-            try {
-                String fileName = fileStorageService.storeFile(attachment);
-                complaint.setAttachment(fileName);
-            } catch (Exception e) {
-                throw new RuntimeException("Failed to store attachment: " + e.getMessage());
-            }
-        }
         
         Complaint savedComplaint = complaintRepository.save(complaint);
         

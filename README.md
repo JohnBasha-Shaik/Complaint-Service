@@ -6,7 +6,7 @@ A comprehensive Spring Boot application for managing municipal complaints with r
 
 ### For Citizens
 - **Easy Complaint Filing**: Submit complaints with categories (Water, Sanitation, Roads, etc.)
-- **File Attachments**: Upload photos and documents to support complaints
+- **Detailed Descriptions**: Provide comprehensive text descriptions of issues
 - **Real-time Tracking**: Track complaint status with detailed timeline
 - **Comment System**: Add comments and communicate with municipal staff
 - **Dashboard**: View all submitted complaints with status summary
@@ -31,7 +31,6 @@ A comprehensive Spring Boot application for managing municipal complaints with r
 - **Security**: Spring Security with JWT authentication
 - **Frontend**: JSP, Bootstrap 5, Font Awesome
 - **ORM**: Spring Data JPA with Hibernate
-- **File Upload**: Commons FileUpload
 - **Build Tool**: Maven
 
 ## Project Structure
@@ -46,7 +45,6 @@ src/main/java/com/municipal/
 │   ├── AuthController.java # Authentication endpoints
 │   ├── ComplaintController.java # Complaint management API
 │   ├── CommentController.java   # Comment management API
-│   ├── FileController.java     # File upload/download
 │   └── WebController.java      # JSP view controllers
 ├── entity/                 # JPA entities
 │   ├── User.java          # User entity with roles
@@ -63,8 +61,7 @@ src/main/java/com/municipal/
     ├── ComplaintService.java    # Complaint management
     ├── CommentService.java      # Comment management
     ├── UserService.java         # User management
-    ├── DepartmentService.java   # Department management
-    └── FileStorageService.java  # File handling
+    └── DepartmentService.java   # Department management
 
 src/main/webapp/WEB-INF/views/
 ├── layout/                 # Common JSP layouts
@@ -176,8 +173,7 @@ The system creates default accounts for testing:
 - `PUT /api/comments/{id}` - Update comment
 - `DELETE /api/comments/{id}` - Delete comment
 
-### File Management
-- `GET /api/files/{fileName}` - Download attachment
+
 
 ## Web Interface Routes
 
@@ -210,16 +206,11 @@ The system creates default accounts for testing:
 
 ### Data Protection
 - Password encryption using BCrypt
-- File upload validation and size limits
+- Input validation and sanitization
 - SQL injection prevention through JPA
 - XSS protection in JSP views
 
-## File Upload Configuration
 
-- **Maximum file size**: 10MB
-- **Supported formats**: Images (JPG, PNG, GIF), PDF, DOC, DOCX
-- **Storage location**: `uploads/` directory
-- **Access**: Authenticated users only
 
 ## Complaint Categories
 
@@ -306,8 +297,8 @@ ENTRYPOINT ["java","-jar","/app.jar"]
 
 ### Backup Strategy
 - Daily database backups
-- File attachment backups
 - Configuration backups
+- System logs archival
 
 ## Contributing
 

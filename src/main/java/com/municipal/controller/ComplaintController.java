@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import jakarta.validation.Valid;
 import java.util.HashMap;
@@ -35,14 +35,13 @@ public class ComplaintController {
             @RequestParam("category") String category,
             @RequestParam("description") String description,
             @RequestParam(value = "locationAddress", required = false) String locationAddress,
-            @RequestParam(value = "attachment", required = false) MultipartFile attachment,
             @AuthenticationPrincipal UserPrincipal currentUser) {
         
         try {
             Complaint.Category complaintCategory = Complaint.Category.valueOf(category.toUpperCase());
             
             Complaint complaint = complaintService.createComplaint(
-                    complaintCategory, description, locationAddress, currentUser.getId(), attachment);
+                    complaintCategory, description, locationAddress, currentUser.getId());
             
             Map<String, Object> response = new HashMap<>();
             response.put("message", "Complaint submitted successfully");

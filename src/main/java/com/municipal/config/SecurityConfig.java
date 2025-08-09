@@ -73,13 +73,13 @@ public class SecurityConfig {
             .authorizeHttpRequests(authz -> authz
                 // Public endpoints
                 .requestMatchers("/", "/login", "/register", "/api/auth/**").permitAll()
-                .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**", "/uploads/**").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
                 
                 // API endpoints with JWT
                 .requestMatchers("/api/complaints/submit", "/api/complaints/my/**").hasRole("CITIZEN")
                 .requestMatchers("/api/comments/**").hasAnyRole("CITIZEN", "STAFF", "ADMIN")
                 .requestMatchers("/api/complaints/assign/**").hasAnyRole("STAFF", "ADMIN")
-                .requestMatchers("/api/files/**").authenticated()
+
                 
                 // Staff endpoints
                 .requestMatchers("/staff/**").hasAnyRole("STAFF", "ADMIN")

@@ -25,8 +25,7 @@ public class Complaint {
     @Column(nullable = false, length = 2000)
     private String description;
     
-    @Column(name = "attachment_path")
-    private String attachment;
+
     
     @NotNull(message = "Citizen is required")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -165,8 +164,7 @@ public class Complaint {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
     
-    public String getAttachment() { return attachment; }
-    public void setAttachment(String attachment) { this.attachment = attachment; }
+
     
     public User getCitizen() { return citizen; }
     public void setCitizen(User citizen) { this.citizen = citizen; }

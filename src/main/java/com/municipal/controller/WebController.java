@@ -16,7 +16,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -69,7 +69,6 @@ public class WebController {
             @RequestParam("category") String category,
             @RequestParam("description") String description,
             @RequestParam(value = "locationAddress", required = false) String locationAddress,
-            @RequestParam(value = "attachment", required = false) MultipartFile attachment,
             @AuthenticationPrincipal UserPrincipal currentUser,
             RedirectAttributes redirectAttributes) {
         
@@ -80,7 +79,7 @@ public class WebController {
             
             Complaint.Category complaintCategory = Complaint.Category.valueOf(category.toUpperCase());
             Complaint complaint = complaintService.createComplaint(
-                    complaintCategory, description, locationAddress, currentUser.getId(), attachment);
+                    complaintCategory, description, locationAddress, currentUser.getId());
             
             redirectAttributes.addFlashAttribute("successMessage", 
                     "Complaint submitted successfully! Your complaint ID is: " + complaint.getId());

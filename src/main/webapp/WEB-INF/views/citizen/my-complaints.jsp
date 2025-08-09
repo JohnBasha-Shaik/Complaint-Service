@@ -206,10 +206,10 @@
             <div class="col-md-4">
                 <h6>What You Can Do</h6>
                 <ul class="small list-unstyled">
-                    <li><i class="fas fa-eye text-primary"></i> Track complaint progress</li>
-                    <li><i class="fas fa-comment text-success"></i> Add comments and questions</li>
-                    <li><i class="fas fa-download text-info"></i> View submitted attachments</li>
-                    <li><i class="fas fa-print text-secondary"></i> Print complaint details</li>
+                                         <li><i class="fas fa-eye text-primary"></i> Track complaint progress</li>
+                     <li><i class="fas fa-comment text-success"></i> Add comments and questions</li>
+                     <li><i class="fas fa-history text-info"></i> View status history</li>
+                     <li><i class="fas fa-print text-secondary"></i> Print complaint details</li>
                 </ul>
             </div>
             <div class="col-md-4">

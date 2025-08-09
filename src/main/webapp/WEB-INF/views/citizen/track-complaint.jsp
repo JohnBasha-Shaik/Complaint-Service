@@ -72,14 +72,7 @@
                     <p class="mb-3">${complaint.locationAddress}</p>
                 </c:if>
                 
-                <c:if test="${not empty complaint.attachment}">
-                    <h6><i class="fas fa-paperclip"></i> Attachment</h6>
-                    <p>
-                        <a href="/api/files/${complaint.attachment}" class="btn btn-outline-primary btn-sm" target="_blank">
-                            <i class="fas fa-download"></i> View Attachment
-                        </a>
-                    </p>
-                </c:if>
+
             </div>
         </div>
         
